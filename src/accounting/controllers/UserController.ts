@@ -23,6 +23,7 @@ export default class UserController {
         return await this.userService.login(token);
     }
 
+    @UseBefore(AuthMiddleware)
     @Delete('/user/:login')
     async removeUserByLogin(@Param('login') login: string, @Req() request: AuthRequest, @Res() res: Response) {
         const { user } = request;
